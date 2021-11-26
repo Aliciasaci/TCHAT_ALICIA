@@ -24,9 +24,9 @@ io.on('connection', (socket) => {
         console.log("Un utilisateur s'est déconnecté");
     });
 
-    //Ecouter les messages échangés(Réception du message emi du côté client)
+    //Ecouter les messages échangés(Réception dans le serveur du message emi par le client)
     socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+        io.emit('received message', msg); //renvoyer le message emi par le client emetteur vers tous les autres clients
     });
 });
 //Demander au serveru HTPP de répondre sur le port 3000

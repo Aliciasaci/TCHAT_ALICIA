@@ -75,10 +75,6 @@
         #messages>li:nth-child(odd) {
             background: rgb(255, 197, 174);
         }
-        
-        #username {
-            background-color: cadetblue;
-        }
     </style>
 </head>
 
@@ -97,19 +93,25 @@
         var form = document.querySelector('#form');
         var username = document.querySelector('#username');
         var message = document.querySelector('#message');
-        //Emission du message 
+        //Emission du message du client vers le serveur
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (message.value) {
-                socket.emit('chat message', {
-                    name: username.value,
-                    message: message.value
-                });
-                message.value = '';
+            if (!username.value) {
+                window.alert("Please, make sure to write ure username down bellow so we can identify you.");
+            } else {
+                if (message.value) {
+                    socket.emit('chat message', {
+                        name: username.value,
+                        message: message.value
+                    });
+                    message.value = '';
+                } else {
+                    window.alert("Your message is empty :)");
+                }
             }
 
         });
-        socket.on('chat message', function(msg) {
+        socket.on('received message', function(msg) { // reception du message renvoyé par le serveur et affichage de celui_ci
             var item = document.createElement('li');
             item.innerHTML += `${msg.name} wrote ${msg.message}`;
             messages.appendChild(item);
