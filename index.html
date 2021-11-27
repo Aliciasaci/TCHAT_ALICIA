@@ -2,122 +2,32 @@
 <html>
 
 <head>
+    <link href="css/style.css" rel="stylesheet">
     <title>TCHAT DE ALICIA</title>
-    <style>
-        body {
-            margin: 0;
-            padding-bottom: 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: rgb(59, 59, 59);
-        }
-        
-        #form {
-            background: rgba(37, 37, 37, 0.856);
-            padding: 0.25rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            height: 3rem;
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
-        }
-        
-        #message {
-            border: none;
-            padding: 0 1rem;
-            flex-grow: 1;
-            border-radius: 2rem;
-            margin: 0.25rem;
-        }
-        
-        #username {
-            border: none;
-            border-radius: 2rem;
-            padding: 0 1rem;
-            margin: 0.25rem;
-        }
-        
-        #message:focus {
-            outline: none;
-        }
-        
-        #form>button {
-            background: #333;
-            border: none;
-            padding: 0 1rem;
-            margin: 0.25rem;
-            border-radius: 3px;
-            outline: none;
-            color: rgb(248, 248, 248);
-        }
-        
-        #form>button:hover {
-            background-color: cadetblue;
-            cursor: pointer;
-        }
-        
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #messages>li {
-            padding: 0.5rem 1rem;
-            background-color: rgb(231, 138, 101);
-            width: 30%;
-            border-radius: 20px;
-            margin: 1em 0 1em 0;
-        }
-        
-        #messages>li:nth-child(odd) {
-            background: rgb(255, 197, 174);
-        }
-    </style>
 </head>
 
 <body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-        <input type="text" id="message" autocomplete="off" placeholder="Write something in here..." />
-        <input type="text" id="username" placeholder="You are?" />
-        <button>Send</button>
-    </form>
+    <aside>
+        <ul id="tabs">
+            <h3>Text channels</h3>
+            <li class="active" data-room="general"># Général</li>
+            <li data-room="entraide"># Salon 1</li>
+            <li data-room="diverses"># Salon 2</li>
+        </ul>
+    </aside>
+    <main>
+        <div id="content">
+            <ul id="messages"></ul>
+            <div id="writing"></div>
+        </div>
+        <form id="form" action="">
+            <input type="text" id="username" placeholder="You are?" />
+            <input type="text" id="message" autocomplete="off" placeholder="Write something in here..." />
+            <button>send</button>
+        </form>
+    </main>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-
-        var messages = document.querySelector('#messages');
-        var form = document.querySelector('#form');
-        var username = document.querySelector('#username');
-        var message = document.querySelector('#message');
-        //Emission du message du client vers le serveur
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!username.value) {
-                window.alert("Please, make sure to write ure username down bellow so we can identify you.");
-            } else {
-                if (message.value) {
-                    socket.emit('chat message', {
-                        name: username.value,
-                        message: message.value
-                    });
-                    message.value = '';
-                } else {
-                    window.alert("Your message is empty :)");
-                }
-            }
-
-        });
-        socket.on('received message', function(msg) { // reception du message renvoyé par le serveur et affichage de celui_ci
-            var item = document.createElement('li');
-            item.innerHTML += `${msg.name} wrote ${msg.message}`;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-        });
-    </script>
+    <script src="javascript/Client.js"></script>
 
 </body>
 

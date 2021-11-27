@@ -1,0 +1,121 @@
+body {
+    display: flex;
+    margin: 0;
+    padding-bottom: 3rem;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
+    background-color: #2F3136;
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+aside {
+    flex: 1;
+    background-color: #212327;
+    height: 93vh;
+}
+
+main {
+    flex: 4;
+}
+
+#tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+#tabs li {
+    padding: 10px;
+    text-transform: lowercase;
+    border-radius: 5px;
+}
+
+#tabs li.active {
+    color: white;
+    background-color: #393c43;
+}
+
+#tabs li:not(.active) {
+    color: #74757a;
+    cursor: pointer;
+}
+
+#tabs h3 {
+    color: #74757a;
+    font-weight: bold;
+}
+
+#content {
+    height: 93vh;
+    position: relative;
+}
+
+#form {
+    background: rgba(37, 37, 37, 0.856);
+    padding: 0.25rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 3rem;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+}
+
+#message {
+    border: none;
+    padding: 0 1rem;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 0.25rem;
+}
+
+#username {
+    border: none;
+    border-radius: 2rem;
+    padding: 0 1rem;
+    margin: 0.25rem;
+}
+
+#message:focus {
+    outline: none;
+}
+
+#form>button {
+    background: #333;
+    border: none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 3px;
+    outline: none;
+    color: rgb(248, 248, 248);
+}
+
+#form>button:hover {
+    background-color: cadetblue;
+    cursor: pointer;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#messages>li {
+    padding: 0.5rem 1rem;
+    background-color: rgb(231, 138, 101);
+    width: 30%;
+    border-radius: 20px;
+    margin: 1em 0 1em 0;
+}
+
+#writing {
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
