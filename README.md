@@ -7,4 +7,3 @@ Création d'une tchat live.
 * Serveur express
 * Sqlite
 
-### Installation 
