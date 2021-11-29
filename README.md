@@ -1,5 +1,5 @@
 # TCHAT_ALICIA
-##Création d'une tchat live. 
+## Création d'une tchat live. 
 
 ### Technologie utilisées : 
 * Node.js
@@ -7,6 +7,6 @@
 * Serveur express
 * Sqlite
 
-###IDE utilisé : Visual studio code
+### IDE utilisé : Visual studio code
 
-##Installation 
+## Installation 
